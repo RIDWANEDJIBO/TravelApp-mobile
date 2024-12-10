@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
@@ -37,6 +38,7 @@ android {
 
 dependencies {
 
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -45,6 +47,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
@@ -57,4 +61,6 @@ dependencies {
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+
+
 }

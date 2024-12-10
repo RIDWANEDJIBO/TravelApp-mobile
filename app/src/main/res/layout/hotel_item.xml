@@ -12,10 +12,9 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/itemImage"
+            android:id="@+id/lieuImage"
             android:layout_width="0dp"
             android:layout_height="160dp"
-            android:contentDescription="hotel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +26,10 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemImage">
+            app:layout_constraintTop_toBottomOf="@+id/lieuImage">
 
             <TextView
-                android:id="@+id/itemTitle"
+                android:id="@+id/lieuTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -53,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/time"
+                    android:id="@+id/lieuTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -61,7 +60,7 @@
                     android:textColor="@color/black" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/lieuClockIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
@@ -74,8 +73,8 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:padding="5dp"
-                app:layout_constraintStart_toStartOf="@id/itemTitle"
-                app:layout_constraintTop_toBottomOf="@+id/itemTitle">
+                app:layout_constraintStart_toStartOf="@id/lieuTitle"
+                app:layout_constraintTop_toBottomOf="@+id/lieuTitle">
 
                 <ImageView
                     android:id="@+id/locationImg"
@@ -86,7 +85,7 @@
                     app:srcCompat="@drawable/location" />
 
                 <TextView
-                    android:id="@+id/location"
+                    android:id="@+id/lieuAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -98,7 +97,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/rat"
+                android:id="@+id/lieuRat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -108,13 +107,13 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/lieuStar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/rat"
+                app:layout_constraintStart_toEndOf="@+id/lieuRat"
                 app:srcCompat="@drawable/star" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,18 +1,16 @@
 package fr.mycompany.travelapp.data;
 
-public class Hotel {
+public class Lieu {
 
-    private int id;
-    private String img;
+    private String imgUrl;
     private String nom;
     private String address;
-    private String rating;
+    private double rating;
     private String time;
     private String description;
 
 
-    public Hotel(int id, String nom, String address, String rating, String time, String description) {
-        this.id = id;
+    public Lieu(String nom, String address, double rating, String time, String description) {
         this.nom = nom;
         this.address = address;
         this.rating = rating;
@@ -20,20 +18,14 @@ public class Hotel {
         this.description = description;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getImg() {
-        return img;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
     public void setImg(String img) {
-        this.img = img;
+        this.imgUrl = img;
     }
 
     public String getNom() {
@@ -56,7 +48,7 @@ public class Hotel {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
