@@ -1,24 +1,38 @@
 package fr.mycompany.travelapp.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.mycompany.travelapp.R;
 import fr.mycompany.travelapp.data.model.Cafe;
-import fr.mycompany.travelapp.databinding.HotelItemBinding;
+import fr.mycompany.travelapp.data.model.Hotel;
+import fr.mycompany.travelapp.databinding.LieuItemBinding;
+import fr.mycompany.travelapp.ui.resultats.DetailHotelActivity;
 
 public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.CafeViewHolder>{
-    private List<Cafe> cafes;
+    private ArrayList<Cafe> cafes;
+    private Context context;
+
+    public CafeAdapter(ArrayList<Cafe> cafes){
+        this.cafes = cafes;
+    }
+
 
     @NonNull
     @Override
     public CafeAdapter.CafeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        HotelItemBinding binding = HotelItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        context = parent.getContext();
+        LieuItemBinding binding = LieuItemBinding.inflate(LayoutInflater.from(context), parent, false);
         return new CafeViewHolder(binding);
     }
 
@@ -26,6 +40,38 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.CafeViewHolder
     public void onBindViewHolder(@NonNull CafeAdapter.CafeViewHolder holder, int position) {
         Cafe cafe = this.cafes.get(position);
         holder.Bind(cafe);
+
+
+        holder.itemView.setOnClickListener(v -> {
+            // Créez un Intent pour ouvrir l'activité de détail
+            Intent intent = new Intent(context, DetailHotelActivity.class);
+            intent.putExtra("type", cafe.getType());
+            intent.putExtra("name", cafe.getName()); // Passez l'ID de l'hôtel ou d'autres données nécessaires
+            intent.putExtra("longitude", cafe.getLongitude());
+            intent.putExtra("latitude", cafe.getLatitude());
+            intent.putExtra("address", cafe.getAddress());
+            intent.putExtra("country", cafe.getCountry());
+            intent.putExtra("city",cafe.getCity());
+            intent.putExtra(
+                    "description",
+                    "Découvrez le " + cafe.getName() + " à "+cafe.getCity()+", "+cafe.getCountry()+
+                            ", un lieu convivial où vous pourrez déguster un délicieux café tout en profitant de la" +
+                            " connexion Wi-Fi gratuite. Ouvert de "
+                            + (cafe.getOpeningHours()==null? cafe.getOpeningHours() : " 6h30 à 23h00, 7j/7" )+
+                            ". Terrasse et accès PMR disponibles."
+            );
+            intent.putExtra("phone", cafe.getPhone());
+            intent.putExtra("website", cafe.getWebsite());
+            intent.putExtra("imageUrl", cafe.getImageUrl());
+            intent.putExtra("startDate",cafe.getInternationalName());
+            intent.putExtra("openingHours",cafe.getOpeningHours());
+            intent.putExtra("wikipediaLink",cafe.isAirConditioning());
+            intent.putExtra("wheelchairAccessible", cafe.isWheelchairAccessible());
+            intent.putExtra("internetAccess",cafe.isInternetAccess());
+            intent.putExtra("wikidataLink",cafe.getWikidataLink());
+            intent.putExtra("buildingHeight",cafe.isOutdoorSeating());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -41,9 +87,9 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.CafeViewHolder
 
 
     public static class CafeViewHolder extends RecyclerView.ViewHolder {
-        private HotelItemBinding binding;
+        private LieuItemBinding binding;
 
-        public CafeViewHolder(@NonNull HotelItemBinding binding) {
+        public CafeViewHolder(@NonNull LieuItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
@@ -52,7 +98,14 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.CafeViewHolder
             binding.lieuTitle.setText(cafe.getName());
             binding.lieuRat.setText(String.valueOf(4.4));
             binding.lieuAddress.setText(cafe.getAddress());
-            binding.lieuImage.setImageResource(R.drawable.hotel_demo_img);
+            if (cafe.getImageUrl()!=null && ! cafe.getImageUrl().isEmpty()){
+                Glide
+                        .with(itemView.getContext())
+                        .load(cafe.getImageUrl())
+                        .into(binding.lieuImage);
+
+            }
+
         }
     }
 }

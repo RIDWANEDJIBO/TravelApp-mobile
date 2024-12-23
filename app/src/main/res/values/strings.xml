@@ -11,4 +11,5 @@
     <string name="rat_value">4.3</string>
     <string name="time">ouvert</string>
     <string name="description">Description</string>
+    <string name="defaultDescription">Le CityZen Hotel, situé en plein cœur de Paris, est l\'adresse idéale pour explorer la capitale. Profitez de chambres modernes et confortables, d\'une salle de sport ouverte 24h/24 et d\'un bar branché. Idéal pour les voyageurs d\'affaires et les touristes.</string>
 </resources>

@@ -3,9 +3,15 @@ package fr.mycompany.travelapp.data.model;
 public class CentreCommercial extends Lieu {
 
     private String phone; // Téléphone
-    private String openingHours; // Horaires d'ouverture
+
+    public String getType() {
+        return type;
+    }
+
+    private final String type = "Centre Commercial";
+    private String openingHours = "08h:00-22h:00"; // Horaires d'ouverture
     private boolean wheelchairAccessible; // Accessibilité fauteuil roulant
-    private boolean hasToilets; // Toilettes disponibles
+    private boolean hasToilets = true; // Toilettes disponibles
     private String buildingType; // Type de bâtiment (retail)
     private int buildingHeight; // Hauteur du bâtiment
     private int startDate; // Année de construction

@@ -38,7 +38,10 @@ public class HotelsResponse {
         public static class Properties {
             private String name;
             private String formatted; // Adresse complète
+            private String country;
+            private String city;
             private String phone;
+            private String opening_hours;
             private String website;
             private boolean wheelchair; // Accessibilité
             private List<String> categories; // Catégories
@@ -50,6 +53,30 @@ public class HotelsResponse {
 
             public void setName(String name) {
                 this.name = name;
+            }
+
+            public String getCountry() {
+                return country;
+            }
+
+            public void setCountry(String country) {
+                this.country = country;
+            }
+
+            public String getCity() {
+                return city;
+            }
+
+            public void setCity(String city) {
+                this.city = city;
+            }
+
+            public String getOpening_hours() {
+                return opening_hours;
+            }
+
+            public void setOpening_hours(String opening_hours) {
+                this.opening_hours = opening_hours;
             }
 
             public String getFormatted() {

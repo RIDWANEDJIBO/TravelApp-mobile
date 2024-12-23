@@ -4,9 +4,29 @@ public class Lieu {
 
     private String name;
     private String address;
+    private String country;
+    private String city;
+    private String website;
+    private String imageUrl;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     private double latitude;
     private double longitude;
-    private String website;
 
     public Lieu() {
     }
@@ -28,20 +48,20 @@ public class Lieu {
         this.address = address;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public String getCountry() {
+        return country;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public String getCity() {
+        return city;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getWebsite() {
@@ -52,6 +72,13 @@ public class Lieu {
         this.website = website;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
 
 }

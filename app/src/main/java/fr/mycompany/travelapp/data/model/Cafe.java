@@ -3,11 +3,17 @@ package fr.mycompany.travelapp.data.model;
 public class Cafe extends Lieu {
     private String internationalName; // Nom international
     private String phone; // Téléphone
-    private String openingHours; // Horaires d'ouverture
-    private boolean wheelchairAccessible; // Accessibilité fauteuil roulant
-    private boolean internetAccess; // Internet disponible
-    private boolean airConditioning; // Climatisation
-    private boolean outdoorSeating; // Places assises à l'extérieur
+
+    public String getType() {
+        return type;
+    }
+
+    private final String type = "Cafe";
+    private String openingHours = "06h30-23h00 7/7"; // Horaires d'ouverture
+    private boolean wheelchairAccessible = true; // Accessibilité fauteuil roulant
+    private boolean internetAccess =true; // Internet disponible
+    private boolean airConditioning = true; // Climatisation
+    private boolean outdoorSeating = true; // Places assises à l'extérieur
     private String wikidataLink; // Lien vers Wikidata
 
     public Cafe(){

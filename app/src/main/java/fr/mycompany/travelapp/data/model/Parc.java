@@ -4,12 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Parc extends Lieu{
-    private String openingHours; // Horaires d'ouverture
-    private boolean wheelchairAccessible; // Accessibilité fauteuil roulant
+
+    private final String type = "Parc";
+    private String openingHours = "08h00-19h00 7/7"; // Horaires d'ouverture
+    private boolean wheelchairAccessible =true; // Accessibilité fauteuil roulant
     private int heritageLevel; // Niveau de patrimoine
-    private String imageUrl; // URL de l'image principale
     private String panoramaImageUrl; // URL de l'image panoramique
     private Map<String, String> nameInInternationalLanguages = new HashMap<>(); // Noms dans différentes langues
+
+    public String getType() {
+        return type;
+    }
 
     public Parc() {
     }
@@ -38,14 +43,6 @@ public class Parc extends Lieu{
         this.heritageLevel = heritageLevel;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public String getPanoramaImageUrl() {
         return panoramaImageUrl;
     }
@@ -61,4 +58,6 @@ public class Parc extends Lieu{
     public void setNameInInternationalLanguages(Map<String, String> nameInInternationalLanguages) {
         this.nameInInternationalLanguages = nameInInternationalLanguages;
     }
+
+
 }

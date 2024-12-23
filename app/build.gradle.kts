@@ -54,9 +54,12 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
 
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
 
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
+
 
 
     // TODO: Add the dependencies for Firebase products you want to use

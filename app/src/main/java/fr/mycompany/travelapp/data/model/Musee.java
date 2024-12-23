@@ -2,9 +2,15 @@ package fr.mycompany.travelapp.data.model;
 
 public class Musee extends Lieu {
     private String phone; // Téléphone
-    private String openingHours; // Horaires d'ouverture
+
+    public String getType() {
+        return type;
+    }
+
+    private final String type = "Musée";
+    private String openingHours = "08h00-18h00 7/7"; // Horaires d'ouverture
     private String operator; // Opérateur
-    private boolean wheelchairAccessible; // Accessibilité fauteuil roulant
+    private boolean wheelchairAccessible = true; // Accessibilité fauteuil roulant
     private int heritageLevel; // Niveau de patrimoine
     private String heritageRef; // Référence patrimoine
     private int heritageInscriptionDate; // Date d'inscription

@@ -69,6 +69,8 @@ public class RestaurantResponse {
         public static class Properties {
             private String name; // Nom du restaurant
             private String oldName; // Ancien nom (nom alternatif)
+            private String country;
+            private String city;
             private String formatted; // Adresse complète
             private String addressLine1; // Ligne 1 de l'adresse
             private String addressLine2; // Ligne 2 de l'adresse
@@ -94,6 +96,22 @@ public class RestaurantResponse {
 
             public void setOldName(String oldName) {
                 this.oldName = oldName;
+            }
+
+            public String getCountry() {
+                return country;
+            }
+
+            public void setCountry(String country) {
+                this.country = country;
+            }
+
+            public String getCity() {
+                return city;
+            }
+
+            public void setCity(String city) {
+                this.city = city;
             }
 
             public String getFormatted() {
@@ -255,14 +273,14 @@ public class RestaurantResponse {
 
         // Classe interne pour la géométrie
         public static class Geometry {
-            private List<Double> coordinates; // Coordonnées [longitude, latitude]
+            private Double[] coordinates; // Coordonnées [longitude, latitude]
 
             // Getters et setters
-            public List<Double> getCoordinates() {
+            public Double[] getCoordinates() {
                 return coordinates;
             }
 
-            public void setCoordinates(List<Double> coordinates) {
+            public void setCoordinates(Double[] coordinates) {
                 this.coordinates = coordinates;
             }
         }

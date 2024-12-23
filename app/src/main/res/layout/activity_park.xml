@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.resultats.RestaurantsFragment">
+    android:id="@+id/main"
+    tools:context=".ui.resultats.ParkActivity">
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,20 +29,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:background="@color/material_dynamic_neutral90"
                     android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/avatars"
+                    android:src="@drawable/back"
                     tools:srcCompat="?attr/actionModeCloseDrawable" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Restaurants"
+                    android:text="Parcs"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textAlignment="center"
@@ -62,13 +62,14 @@
                 android:textColor="@color/black"
                 android:paddingVertical="15dp"
                 android:paddingStart="10dp"
-                android:text="Les restaurants recommandés" />
+                android:text="Les parcs recommandés" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@id/list_item"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -77,8 +78,8 @@
     </ScrollView>
 
     <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

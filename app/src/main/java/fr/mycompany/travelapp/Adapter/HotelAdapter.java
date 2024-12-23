@@ -1,5 +1,6 @@
 package fr.mycompany.travelapp.Adapter;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.bumptech.glide.Glide;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.mycompany.travelapp.R;
 import fr.mycompany.travelapp.data.model.Hotel;
-import fr.mycompany.travelapp.databinding.HotelItemBinding;
+import fr.mycompany.travelapp.databinding.LieuItemBinding;
+import fr.mycompany.travelapp.ui.resultats.DetailHotelActivity;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.LieuViewHolder> {
 
@@ -21,15 +24,17 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.LieuViewHold
     private Context context;
 
 
+
     public HotelAdapter(ArrayList<Hotel> hotels){
         this.hotels = hotels;
     }
+
 
     @NonNull
     @Override
     public HotelAdapter.LieuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        HotelItemBinding binding = HotelItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        LieuItemBinding binding = LieuItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new LieuViewHolder(binding);
 
     }
@@ -38,9 +43,31 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.LieuViewHold
     public void onBindViewHolder(@NonNull HotelAdapter.LieuViewHolder holder, int position) {
         Hotel hotel = this.hotels.get(position);
         holder.Bind(hotel);
+
+
+        holder.itemView.setOnClickListener(v -> {
+            // Créez un Intent pour ouvrir l'activité de détail
+            Intent intent = new Intent(context, DetailHotelActivity.class);
+            intent.putExtra("type", hotel.getType());
+            intent.putExtra("name", hotel.getName()); // Passez l'ID de l'hôtel ou d'autres données nécessaires
+            intent.putExtra("address", hotel.getAddress());
+            intent.putExtra("country", hotel.getCountry());
+            intent.putExtra("city",hotel.getCity());
+            intent.putExtra("longitude", hotel.getLongitude());
+            intent.putExtra("latitude", hotel.getLatitude());
+            intent.putExtra("description","Au cœur de "+hotel.getCity()+",l'Hôtel " + hotel.getName() + " vous offre un séjour urbain et dynamique." +
+                    "Découvrez notre spa dernier cri, notre salle de fitness et " +
+                    "nos chambres design. Ouvert " + hotel.getOpening_hours() + ", accessible à tous.");
+            intent.putExtra("openingHours",hotel.getOpening_hours());
+            intent.putExtra("phone", hotel.getPhone());
+            intent.putExtra("website", hotel.getWebsite());
+            intent.putExtra("imageUrl", hotel.getImageUrl());
+            intent.putExtra("wheelchairAccessible", hotel.isWheelchairAccessible());
+            intent.putExtra("buildingLevels", hotel.getBuildingLbevels());
+            context.startActivity(intent); // Démarrez l'activité de détail
+        });
+
     }
-
-
 
 
     @Override
@@ -58,9 +85,9 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.LieuViewHold
 
     public static class LieuViewHolder extends RecyclerView.ViewHolder {
 
-        private HotelItemBinding binding;
+        private LieuItemBinding binding;
 
-        public LieuViewHolder(@NonNull HotelItemBinding binding) {
+        public LieuViewHolder(@NonNull LieuItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
@@ -69,18 +96,15 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.LieuViewHold
             binding.lieuTitle.setText(hotel.getName());
             binding.lieuRat.setText(String.valueOf(4.4));
             binding.lieuAddress.setText(hotel.getAddress());
-            binding.lieuImage.setImageResource(R.drawable.hotel_demo_img);
+
+            if (hotel.getImageUrl()!=null && ! hotel.getImageUrl().isEmpty()){
+                Glide
+                        .with(itemView.getContext())
+                        .load(hotel.getImageUrl())
+                        .into(binding.lieuImage);
+            }
 
 
-//            if (hotel.getImgUrl()!=null && !lieu.getImgUrl().isEmpty()){
-//                Glide
-//                        .with(itemView.getContext())
-//                        .load(lieu.getImgUrl())
-//                        .into(binding.lieuImage);
-//            }
-//            else{
-//                binding.lieuImage.setImageResource(R.drawable.hotel_demo_img);
-//            }
 
         }
     }

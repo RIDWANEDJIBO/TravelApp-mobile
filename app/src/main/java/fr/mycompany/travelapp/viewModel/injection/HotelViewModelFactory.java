@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import fr.mycompany.travelapp.viewModel.HotelViewModel;
+import fr.mycompany.travelapp.viewModel.LieuViewModel;
 
 public class HotelViewModelFactory implements ViewModelProvider.Factory {
     private final String apiKey;
@@ -16,9 +16,9 @@ public class HotelViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(HotelViewModel.class)) {
-            return modelClass.cast(new HotelViewModel(apiKey));
+        if (modelClass.isAssignableFrom(LieuViewModel.class)) {
+            return modelClass.cast(new LieuViewModel(apiKey));
         }
-        throw new IllegalArgumentException("Unknown ViewModel class");
+        else throw new IllegalArgumentException("Unknown ViewModel class");
     }
 }

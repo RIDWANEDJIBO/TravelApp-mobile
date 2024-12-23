@@ -1,12 +1,21 @@
 package fr.mycompany.travelapp.data.model;
 
 public class Hotel extends Lieu {
-
+    private String opening_hours = "24h/24h 7/7";
     private String altName; // Nom alternatif
-    private String phone; // Téléphone
-    private boolean wheelchairAccessible; // Accessibilité fauteuil roulant
-    private int buildingLevels; // Nombre d'étages
+    private String phone;
+    private final String type = "hotel";// Téléphone
+    private boolean wheelchairAccessible = true; // Accessibilité fauteuil roulant
+    private int buildingLbevels = 4; // Nombre d'étages
 
+
+    public String getOpening_hours() {
+        return opening_hours;
+    }
+
+    public void setOpening_hours(String opening_hours) {
+        this.opening_hours = opening_hours;
+    }
 
     public Hotel() {
         super();
@@ -28,6 +37,10 @@ public class Hotel extends Lieu {
         this.phone = phone;
     }
 
+    public String getType(){
+        return this.type;
+    }
+
     public boolean isWheelchairAccessible() {
         return wheelchairAccessible;
     }
@@ -36,11 +49,11 @@ public class Hotel extends Lieu {
         this.wheelchairAccessible = wheelchairAccessible;
     }
 
-    public int getBuildingLevels() {
-        return buildingLevels;
+    public int getBuildingLbevels() {
+        return buildingLbevels;
     }
 
-    public void setBuildingLevels(int buildingLevels) {
-        this.buildingLevels = buildingLevels;
+    public void setBuildingLbevels(int buildingLbevels) {
+        this.buildingLbevels = buildingLbevels;
     }
 }

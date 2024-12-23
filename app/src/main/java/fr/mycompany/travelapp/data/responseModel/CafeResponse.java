@@ -38,6 +38,9 @@ public class CafeResponse {
         public static class Properties {
             private String name;
             private String name_international;
+            private String country;
+            private String city;
+            private String Phone;
             private String formatted;
             private String address_line1;
             private String address_line2;
@@ -63,12 +66,36 @@ public class CafeResponse {
                 this.name_international = name_international;
             }
 
+            public String getCountry() {
+                return country;
+            }
+
+            public void setCountry(String country) {
+                this.country = country;
+            }
+
+            public String getCity() {
+                return city;
+            }
+
+            public void setCity(String city) {
+                this.city = city;
+            }
+
             public String getFormatted() {
                 return formatted;
             }
 
             public void setFormatted(String formatted) {
                 this.formatted = formatted;
+            }
+
+            public String getPhone() {
+                return Phone;
+            }
+
+            public void setPhone(String phone) {
+                Phone = phone;
             }
 
             public String getAddress_line1() {
@@ -192,13 +219,13 @@ public class CafeResponse {
         }
 
         public static class Geometry {
-            private List<Double> coordinates;
+            private Double[] coordinates;
 
-            public List<Double> getCoordinates() {
+            public Double[] getCoordinates() {
                 return coordinates;
             }
 
-            public void setCoordinates(List<Double> coordinates) {
+            public void setCoordinates(Double[] coordinates) {
                 this.coordinates = coordinates;
             }
         }

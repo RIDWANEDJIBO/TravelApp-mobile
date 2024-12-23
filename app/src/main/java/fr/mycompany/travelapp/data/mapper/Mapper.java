@@ -1,6 +1,5 @@
 package fr.mycompany.travelapp.data.mapper;
 
-import java.net.ResponseCache;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +27,20 @@ public interface Mapper {
 
             hotel.setName(props.getName());
             hotel.setAddress(props.getFormatted());
-            hotel.setLatitude(geom.getCoordinates()[1]);
-            hotel.setLongitude(geom.getCoordinates()[0]);
+            hotel.setCountry(props.getCountry());
+            if (props.getOpening_hours()!=null){
+                hotel.setOpening_hours(props.getOpening_hours());
+            }
+            hotel.setCity(props.getCity());
             hotel.setWebsite(props.getWebsite());
             hotel.setPhone(props.getPhone());
             hotel.setWheelchairAccessible(props.isWheelchair());
-            hotel.setBuildingLevels(props.getBuilding() != null ? props.getBuilding().getLevels() : 0);
+            hotel.setBuildingLbevels(props.getBuilding() != null ? props.getBuilding().getLevels() : 0);
+
+            //geo
+
+            hotel.setLongitude(geom.getCoordinates()[0]);
+            hotel.setLatitude(geom.getCoordinates()[1]);
 
             hotels.add(hotel);
         }
@@ -44,15 +51,20 @@ public interface Mapper {
         List<Restaurant> restaurants = new ArrayList<>();
         for (RestaurantResponse.Feature feature : response.getFeatures()) {
             RestaurantResponse.Feature.Properties properties = feature.getProperties();
+            RestaurantResponse.Feature.Geometry geom = feature.getGeometry();
             Restaurant restaurant = new Restaurant();
 
             // Mapping des propriétés depuis le Feature
             restaurant.setName(properties.getName());
-            restaurant.setOldName(properties.getOldName());
             restaurant.setPhone(properties.getContact() != null ? properties.getContact().getPhone() : "");
             restaurant.setEmail(properties.getContact() != null ? properties.getContact().getEmail() : "");
-            restaurant.setOpeningHours(properties.getOpeningHours());
+            restaurant.setAddress(properties.getFormatted());
+            restaurant.setCountry(properties.getCountry());
+            restaurant.setCity(properties.getCity());
             restaurant.setDescription(properties.getDescription());
+            if (properties.getOpeningHours()!=null){
+                restaurant.setOpeningHours(properties.getOpeningHours());
+            }
 
             // Accessibilité
             if (properties.getFacilities() != null) {
@@ -63,6 +75,11 @@ public interface Mapper {
             // Réseaux sociaux
             restaurant.setTwitterHandle(properties.getDatasource().getRaw().getTwitter());
             restaurant.setFacebookPage(properties.getDatasource().getRaw().getFacebook());
+
+            // geom
+
+            restaurant.setLongitude(geom.getCoordinates()[0]);
+            restaurant.setLatitude(geom.getCoordinates()[1]);
 
             // Ajouter à la liste
             restaurants.add(restaurant);
@@ -77,13 +94,22 @@ public interface Mapper {
 
         for (CafeResponse.Feature feature : response.getFeatures()) {
             CafeResponse.Feature.Properties properties = feature.getProperties();
+            CafeResponse.Feature.Geometry geom = feature.getGeometry();
             Cafe cafe = new Cafe();
 
             // Mapping des propriétés depuis le Feature
             cafe.setName(properties.getName());
+            cafe.setPhone(properties.getPhone());
+            cafe.setCountry(properties.getCountry());
+            cafe.setCity(properties.getCity());
             cafe.setInternationalName(properties.getName_international());
             cafe.setPhone(properties.getContact() != null ? properties.getContact().getPhone() : "");
-            cafe.setOpeningHours(properties.getOpening_hours());
+            cafe.setWebsite(properties.getWebsite());
+            cafe.setAddress(properties.getFormatted());
+
+            if (properties.getOpening_hours()!=null){
+                cafe.setOpeningHours(properties.getOpening_hours());
+            }
             cafe.setWebsite(properties.getWebsite());
 
             // Accessibilité
@@ -93,6 +119,11 @@ public interface Mapper {
                 cafe.setAirConditioning(properties.getFacilities().isAir_conditioning());
                 cafe.setOutdoorSeating(properties.getFacilities().isOutdoor_seating());
             }
+
+            //geom
+
+            cafe.setLongitude(geom.getCoordinates()[0]);
+            cafe.setLatitude(geom.getCoordinates()[1]);
 
             // Lien Wikidata
             cafe.setWikidataLink(properties.getWiki_and_media() != null ? properties.getWiki_and_media().getWikidata() : "");
@@ -110,12 +141,16 @@ public interface Mapper {
 
         for (CentreCommercialResponse.Feature feature : response.getFeatures()) {
             CentreCommercialResponse.Feature.Properties properties = feature.getProperties();
+            CentreCommercialResponse.Feature.Geometry geom = feature.getGeometry();
             CentreCommercial centre = new CentreCommercial();
 
             centre.setName(properties.getName());
+            centre.setCountry(properties.getCountry());
+            centre.setCity(properties.getCity());
             centre.setPhone(properties.getContact() != null ? properties.getContact().getPhone() : "");
-            centre.setOpeningHours(properties.getOpening_hours());
-            centre.setWebsite(properties.getWebsite());
+            if (properties.getOpening_hours()!=null){
+                centre.setOpeningHours(properties.getOpening_hours());
+            }            centre.setWebsite(properties.getWebsite());
             centre.setAddress(properties.getFormatted());
 
             // falities informations
@@ -133,6 +168,10 @@ public interface Mapper {
             centre.setWikidataLink(properties.getWiki_and_media() != null ? properties.getWiki_and_media().getWikidata() : "");
             centre.setWikipediaLink(properties.getWiki_and_media() != null ? properties.getWiki_and_media().getWikipedia() : "");
 
+            //geom
+            centre.setLongitude(geom.getCoordinates()[0]);
+            centre.setLatitude(geom.getCoordinates()[1]);
+
         }
 
         return centres;
@@ -149,13 +188,14 @@ public interface Mapper {
 
             musee.setName(properties.getName());
             musee.setAddress(properties.getFormatted());
-            musee.setLatitude(geom.getCoordinates()[0]); // Latitude
-            musee.setLongitude(geom.getCoordinates()[1]); // Longitude
+            musee.setCity(properties.getCity()); // Latitude
+            musee.setCountry(properties.getCountry()); // Longitude
             musee.setWebsite(properties.getWebsite());
-
+            if (properties.getOpening_hours()!=null){
+                musee.setOpeningHours(properties.getOpening_hours());
+            }
             // Propriétés spécifiques à Musee
             musee.setPhone(properties.getContact() != null ? properties.getContact().getPhone() : "");
-            musee.setOpeningHours(properties.getOpening_hours());
             musee.setOperator(properties.getOperator());
 
             if (properties.getFacilities() != null) {
@@ -180,6 +220,11 @@ public interface Mapper {
                 musee.setWikimediaCommons(properties.getWiki_and_media().getWikimedia_commons());
             }
 
+            // geom
+
+            musee.setLongitude(geom.getCoordinates()[0]);
+            musee.setLatitude(geom.getCoordinates()[1]);
+
             musees.add(musee);
         }
 
@@ -199,12 +244,14 @@ public interface Mapper {
             // Propriétés héritées de Lieu
             parc.setName(properties.getName());
             parc.setAddress(properties.getFormatted());
-            parc.setLatitude(geom.getCoordinates()[1]); // Latitude
-            parc.setLongitude(geom.getCoordinates()[0]); // Longitude
+            parc.setCountry(properties.getCountry()); // Latitude
+            parc.setCity(properties.getCity()); // Longitude
             parc.setWebsite(properties.getWebsite());
+            if (properties.getOpening_hours()!=null){
+                parc.setOpeningHours(properties.getOpening_hours());
+            }
 
             // Propriétés spécifiques à Parc
-            parc.setOpeningHours(properties.getOpening_hours());
 
             if (properties.getFacilities() != null) {
                 parc.setWheelchairAccessible(properties.getFacilities().isWheelchair());
@@ -222,6 +269,10 @@ public interface Mapper {
             if (properties.getName_international() != null) {
                 parc.setNameInInternationalLanguages(properties.getName_international());
             }
+
+            // geom
+            parc.setLongitude(geom.getCoordinates()[0]);
+            parc.setLatitude(geom.getCoordinates()[1]);
 
             parcs.add(parc);
         }

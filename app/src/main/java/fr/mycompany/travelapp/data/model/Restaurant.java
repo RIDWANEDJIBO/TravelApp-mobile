@@ -4,11 +4,17 @@ public class Restaurant extends Lieu {
 
     private String oldName; // Ancien nom
     private String phone; // Téléphone
+
+    public String getType() {
+        return type;
+    }
+
+    private final String type = "Restaurant";
     private String email; // Email
-    private String openingHours; // Horaires d'ouverture
+    private String openingHours = "08h00-00h00 7/7"; // Horaires d'ouverture
     private String description; // Description
-    private boolean wheelchairAccessible; // Accessibilité fauteuil roulant
-    private boolean wheelchairToilets; // Toilettes accessibles
+    private boolean wheelchairAccessible = true; // Accessibilité fauteuil roulant
+    private boolean wheelchairToilets = true; // Toilettes accessibles
     private String twitterHandle; // Compte Twitter
     private String facebookPage; // Page Facebook
 
